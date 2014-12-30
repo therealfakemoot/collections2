@@ -59,3 +59,9 @@ class BetterOrderedDict(MutableMapping):
 
     def __repr__(self):
         return str([(key, self[key]) for key in self])
+
+    def __eq__(self, other):
+        if not isinstance(other, BetterOrderedDict):
+            return False
+
+        return self.items() == other.items()
