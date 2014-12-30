@@ -28,8 +28,8 @@ class BetterOrderedDict(MutableMapping):
         return self._keys.index(key)
 
     def insert(self, key, value, index):
-        if key in self._d:
-            self._keys.pop(key)
+        if key in self._keys:
+            self._keys.remove(key)
         self._keys.insert(index, key)
         self._d[key] = value
 
@@ -37,3 +37,6 @@ class BetterOrderedDict(MutableMapping):
         if self._keys != self._d:
             raise ValueError('Keys do not match.')
         self._keys = keys
+
+    def __repr__(self):
+        return str([(key, self[key]) for key in self])
