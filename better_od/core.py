@@ -3,7 +3,7 @@ from collections.abc import MutableMapping
 #
 
 
-class NewOrderedDict(MutableMapping):
+class BetterOrderedDict(MutableMapping):
     def __init__(self, **kwargs):
         self._d = dict()
         self._keys = []
@@ -24,6 +24,9 @@ class NewOrderedDict(MutableMapping):
 
     def __delitem__(self, key):
         del self._d[key]
+
+    def key_index(self, key):
+        return self._keys.index(key)
 
     def insert(self, key, value, index):
         if key in self._d:
