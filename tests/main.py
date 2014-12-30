@@ -22,7 +22,8 @@ def test_insert():
                 (('e', 'f', 2), 2),
                 (('g', 'h', 2), 2),
                 (('i', 'j', 2), 2),
-                (('k', 'l', 10), 5)]
+                (('k', 'l', 10), 5),
+                (('m', 'n', 4), 4)]
 
     d = odict()
     for data, result in scenario:
@@ -34,6 +35,7 @@ def test_insert():
                             ('c', 'd'),
                             ('i', 'j'),
                             ('g', 'h'),
+                            ('m', 'n'),
                             ('e', 'f'),
                             ('k', 'l')])
 
