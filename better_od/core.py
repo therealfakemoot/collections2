@@ -39,7 +39,7 @@ class BetterOrderedDict(MutableMapping):
         self._d[key] = value
 
     def reorder_keys(self, keys):
-        if self._keys != self._d:
+        if set(keys) != set(self._d):
             raise ValueError('Keys do not match.')
         self._keys = keys
 

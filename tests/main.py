@@ -1,10 +1,12 @@
 from better_od import BetterOrderedDict as odict
+import pytest
 
 
 def assert_against_list(d, l):
     assert d.items() == l
     assert d.keys() == [k for k, v in l]
     assert d.values() == [v for k, v in l]
+    assert len(d) == len(l)
 
 
 def test_init():
@@ -14,6 +16,30 @@ def test_init():
                  ('g', 'h')]
     d = odict(base_list)
     assert_against_list(d, base_list)
+
+
+def test_get():
+    d = odict([('a', 'b'),
+               ('c', 'd'),
+               ('e', 'f'),
+               ('g', 'h')])
+
+    assert d['a'] == 'b'
+    assert d['c'] == 'd'
+    assert d['e'] == 'f'
+    assert d['g'] == 'h'
+
+
+def test_key_index():
+    d = odict([('a', 'b'),
+               ('c', 'd'),
+               ('e', 'f'),
+               ('g', 'h')])
+
+    assert d.key_index('a') == 0
+    assert d.key_index('c') == 1
+    assert d.key_index('e') == 2
+    assert d.key_index('g') == 3
 
 
 def test_insert():
@@ -86,3 +112,36 @@ def test_delete():
                             ('e', 'f'),
                             ('g', 'h'),
                             ('c', 'z')])
+
+
+def test_reorder_keys():
+    d = odict([('a', 'b'),
+               ('c', 'd'),
+               ('e', 'f'),
+               ('g', 'h')])
+
+    d.reorder_keys(['e', 'c', 'g', 'a'])
+
+    assert_against_list(d, [('e', 'f'),
+                            ('c', 'd'),
+                            ('g', 'h'),
+                            ('a', 'b')])
+
+
+def test_reorder_keys_fail():
+    d = odict([('a', 'b'),
+               ('c', 'd'),
+               ('e', 'f'),
+               ('g', 'h')])
+
+    with pytest.raises(ValueError):
+        d.reorder_keys(['e', 'c', 'g', 'a', 'z'])
+
+    with pytest.raises(ValueError):
+        d.reorder_keys(['e', 'c', 'g'])
+
+    with pytest.raises(ValueError):
+        d.reorder_keys(['e', 'g', 'a', 'z'])
+
+    with pytest.raises(ValueError):
+        d.reorder_keys(['e', 'c', 'a'])
