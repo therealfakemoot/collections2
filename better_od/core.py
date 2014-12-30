@@ -53,8 +53,10 @@ class BetterOrderedDict(MutableMapping):
         '''Accepts a :keys: parameter, an iterable of keys in the
         desired new order. The :keys: parameter must contain all
         existing keys.'''
-        if set(keys) != set(self._d.keys()) or len(keys) != len(self._d.keys()):
-            raise ValueError('Keys do not match.')
+        if len(keys) != len(self._keys):
+            raise ValueError('The supplied number of keys does not match.')
+        if set(keys) != set(self._d.keys()):
+            raise ValueError('The supplied keys do not match the current set of keys.')
         self._keys = keys
 
     def __repr__(self):
