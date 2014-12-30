@@ -157,3 +157,21 @@ def test_representation():
                ('g', 'h')])
 
     assert str(d) == "[('a', 'b'), ('c', 'd'), ('e', 'f'), ('g', 'h')]"
+
+
+def test_equal():
+    d1 = odict([('a', 'b'),
+                ('e', 'f'),
+                ('c', 'd'),
+                ('g', 'h')])
+    d2 = odict([('a', 'b'),
+                ('c', 'd'),
+                ('e', 'f'),
+                ('g', 'h')])
+    d3 = odict([('a', 'b'),
+                ('c', 'd'),
+                ('e', 'f'),
+                ('g', 'h')])
+
+    assert not d1 == d2
+    assert d3 == d2
