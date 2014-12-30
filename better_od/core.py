@@ -6,12 +6,16 @@ class BetterOrderedDict(MutableMapping):
     and insertion of keys. With the exception of the key_index, insert, and
     reorder_keys methods behavior is identical to stock dictionary objects.'''
 
-    def __init__(self, **kwargs):
+    def __init__(self, items=None):
         '''BetterOrderedDict accepts an optional iterable of two-tuples
         indicating keys and values.'''
 
         self._d = dict()
         self._keys = []
+        if items is None:
+            return
+        for key, value in items:
+            self[key] = value
 
     def __len__(self):
         return len(self._d)
