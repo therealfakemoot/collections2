@@ -8,7 +8,8 @@ The BetterOrderedDict or BOD is used identically to other dict-like or mapping o
 
 ##Just a normal dict
 ```python
-D()
+>>>from better_od import BOD
+>>>d = BOD()
 >>> d['a'] = 1
 >>>d['b'] = 2
 >>>d
