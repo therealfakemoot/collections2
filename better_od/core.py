@@ -2,13 +2,20 @@ from collections import MutableMapping
 
 
 class BetterOrderedDict(MutableMapping):
-    def __init__(self, *args, **kwargs):
+    '''BetterOrderedDict is a mapping object that allows for ordered access
+    and insertion of keys. With the exception of the key_index, insert, and
+    reorder_keys methods behavior is identical to stock dictionary objects.'''
+
+    def __init__(self, items=None):
+        '''BetterOrderedDict accepts an optional iterable of two-tuples
+        indicating keys and values.'''
+
         self._d = dict()
         self._keys = []
-        if args:
-            if type(args[0]) is list:
-                for k, v in args[0]:
-                    self[k] = v
+        if items is None:
+            return
+        for key, value in items:
+            self[key] = value
 
     def __len__(self):
         return len(self._d)
@@ -30,15 +37,22 @@ class BetterOrderedDict(MutableMapping):
         del self._d[key]
 
     def key_index(self, key):
+        '''Accepts a parameter, :key:, and returns an integer value
+        representing its index in the ordered list of keys.'''
         return self._keys.index(key)
 
     def insert(self, key, value, index):
+        '''Accepts a :key:, :value:, and :index: parameter and inserts
+        a new key, value member at the desired index.'''
         if key in self._keys:
             self._keys.remove(key)
         self._keys.insert(index, key)
         self._d[key] = value
 
     def reorder_keys(self, keys):
+        '''Accepts a :keys: parameter, an iterable of keys in the
+        desired new order. The :keys: parameter must contain all
+        existing keys.'''
         if set(keys) != set(self._d):
             raise ValueError('Keys do not match.')
         self._keys = keys
