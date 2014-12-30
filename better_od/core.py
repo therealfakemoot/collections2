@@ -1,6 +1,4 @@
 from collections.abc import MutableMapping
-# TODO Method for finding index of a key
-#
 
 
 class BetterOrderedDict(MutableMapping):
@@ -13,7 +11,7 @@ class BetterOrderedDict(MutableMapping):
 
     def __iter__(self):
         for key in self._keys:
-            yield self._d[key]
+            yield key
 
     def __setitem__(self, key, value):
         self._keys.append(key)
@@ -23,6 +21,7 @@ class BetterOrderedDict(MutableMapping):
         return self._d[key]
 
     def __delitem__(self, key):
+        self._keys.pop(key)
         del self._d[key]
 
     def key_index(self, key):
