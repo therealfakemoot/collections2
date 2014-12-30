@@ -14,7 +14,8 @@ class BetterOrderedDict(MutableMapping):
             yield key
 
     def __setitem__(self, key, value):
-        self._keys.append(key)
+        if key not in self._keys:
+            self._keys.append(key)
         self._d[key] = value
 
     def __getitem__(self, key):
