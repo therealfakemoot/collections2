@@ -2,9 +2,13 @@ from collections import MutableMapping
 
 
 class BetterOrderedDict(MutableMapping):
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         self._d = dict()
         self._keys = []
+        if args:
+            if type(args[0]) is list:
+                for k, v in args[0]:
+                    self[k] = v
 
     def __len__(self):
         return len(self._d)
