@@ -21,7 +21,7 @@ class BetterOrderedDict(MutableMapping):
         return self._d[key]
 
     def __delitem__(self, key):
-        self._keys.pop(key)
+        self._keys.remove(key)
         del self._d[key]
 
     def key_index(self, key):
