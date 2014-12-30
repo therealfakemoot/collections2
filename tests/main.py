@@ -145,3 +145,12 @@ def test_reorder_keys_fail():
 
     with pytest.raises(ValueError):
         d.reorder_keys(['e', 'c', 'a'])
+
+
+def test_representation():
+    d = odict([('a', 'b'),
+               ('c', 'd'),
+               ('e', 'f'),
+               ('g', 'h')])
+
+    assert str(d) == "[('a', 'b'), ('c', 'd'), ('e', 'f'), ('g', 'h')]"
