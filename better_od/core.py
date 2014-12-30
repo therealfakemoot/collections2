@@ -43,7 +43,15 @@ class BetterOrderedDict(MutableMapping):
 
     def insert(self, key, value, index):
         '''Accepts a :key:, :value:, and :index: parameter and inserts
-        a new key, value member at the desired index.'''
+        a new key, value member at the desired index.
+
+        Note: Inserting with a negative index will have the following behavior:
+        >>> l = [1, 2, 3, 4]
+        >>> l.insert(-1, 5)
+        >>> l
+        [1, 2, 3, 5, 4]
+        '''
+
         if key in self._keys:
             self._keys.remove(key)
         self._keys.insert(index, key)
