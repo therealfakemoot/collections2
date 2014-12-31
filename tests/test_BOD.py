@@ -39,3 +39,7 @@ class TestBODEquality(unittest.TestCase):
     def test_value_check(self):
         bod = BOD([('a', -2), ('b', 0), ('c', 3)])
         self.assertNotEquals(self.d, bod)
+
+    def test_builtin_dict_inequality(self):
+        d = {'a': -2, 'b': 0, 'c': 3}
+        self.assertNotEquals(self.d, d)
