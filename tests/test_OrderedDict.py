@@ -9,13 +9,13 @@ class TestOrderedDict(unittest.TestCase):
         self._test_vals = [-2, 0, 1]
         self.d = OrderedDict(zip(self._test_keys, self._test_vals))
 
-    def test_OrderedDict_order(self):
+    def test_order(self):
         self.assertEquals(self.d.keys(), [key for key in self._test_keys])
 
-    def test_OrderedDict_index(self):
+    def test_index(self):
         self.assertEquals(self.d.key_index('c'), 2)
 
-    def test_OrderedDict_reorder(self):
+    def test_reorder(self):
         new_order = ['c', 'a', 'b']
         self.d.reorder_keys(new_order)
         self.assertEquals(self.d.keys(), new_order)
