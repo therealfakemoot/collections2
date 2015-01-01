@@ -96,6 +96,9 @@ class OrderedSet(MutableSet):
     def __len__(self):
         return len(self._set)
 
+    def __repr__(self):
+        return str(list(enumerate(self._set)))
+
     def add(self, value):
         if value in self._set:
             return
