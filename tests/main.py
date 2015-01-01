@@ -1,4 +1,4 @@
-from better_od import BetterOrderedDict as odict
+from better_od import OrderedDict
 import pytest
 
 
@@ -14,12 +14,12 @@ def test_init():
                  ('c', 'd'),
                  ('e', 'f'),
                  ('g', 'h')]
-    d = odict(base_list)
+    d = OrderedDict(base_list)
     assert_against_list(d, base_list)
 
 
 def test_get():
-    d = odict([('a', 'b'),
+    d = OrderedDict([('a', 'b'),
                ('c', 'd'),
                ('e', 'f'),
                ('g', 'h')])
@@ -31,7 +31,7 @@ def test_get():
 
 
 def test_key_index():
-    d = odict([('a', 'b'),
+    d = OrderedDict([('a', 'b'),
                ('c', 'd'),
                ('e', 'f'),
                ('g', 'h')])
@@ -51,7 +51,7 @@ def test_insert():
                 (('k', 'l', 10), 5),
                 (('m', 'n', 4), 4)]
 
-    d = odict()
+    d = OrderedDict()
     for data, result in scenario:
         d.insert(*data)
         assert d[data[0]] == data[1]
@@ -67,7 +67,7 @@ def test_insert():
 
 
 def test_update_with_insert():
-    d = odict([('a', 'b'),
+    d = OrderedDict([('a', 'b'),
                ('c', 'd'),
                ('e', 'f'),
                ('g', 'h')])
@@ -81,7 +81,7 @@ def test_update_with_insert():
 
 
 def test_update():
-    d = odict([('a', 'b'),
+    d = OrderedDict([('a', 'b'),
                ('c', 'd'),
                ('e', 'f'),
                ('g', 'h')])
@@ -95,7 +95,7 @@ def test_update():
 
 
 def test_delete():
-    d = odict([('a', 'b'),
+    d = OrderedDict([('a', 'b'),
                ('c', 'd'),
                ('e', 'f'),
                ('g', 'h')])
@@ -115,7 +115,7 @@ def test_delete():
 
 
 def test_reorder_keys():
-    d = odict([('a', 'b'),
+    d = OrderedDict([('a', 'b'),
                ('c', 'd'),
                ('e', 'f'),
                ('g', 'h')])
@@ -129,7 +129,7 @@ def test_reorder_keys():
 
 
 def test_reorder_keys_fail():
-    d = odict([('a', 'b'),
+    d = OrderedDict([('a', 'b'),
                ('c', 'd'),
                ('e', 'f'),
                ('g', 'h')])
@@ -151,7 +151,7 @@ def test_reorder_keys_fail():
 
 
 def test_representation():
-    d = odict([('a', 'b'),
+    d = OrderedDict([('a', 'b'),
                ('c', 'd'),
                ('e', 'f'),
                ('g', 'h')])
@@ -160,15 +160,15 @@ def test_representation():
 
 
 def test_equal():
-    d1 = odict([('a', 'b'),
+    d1 = OrderedDict([('a', 'b'),
                 ('e', 'f'),
                 ('c', 'd'),
                 ('g', 'h')])
-    d2 = odict([('a', 'b'),
+    d2 = OrderedDict([('a', 'b'),
                 ('c', 'd'),
                 ('e', 'f'),
                 ('g', 'h')])
-    d3 = odict([('a', 'b'),
+    d3 = OrderedDict([('a', 'b'),
                 ('c', 'd'),
                 ('e', 'f'),
                 ('g', 'h')])
