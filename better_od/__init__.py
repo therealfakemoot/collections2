@@ -1,2 +1,2 @@
-from better_od.core import OrderedDict
-from better_od.core import OrderedSet
+from better_od.dicts import OrderedDict
+from better_od.sets import OrderedSet
