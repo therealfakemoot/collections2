@@ -1,11 +1,6 @@
 from twisted.trial import unittest
-from twisted.trial.itrial import IReporter
 
 from better_od import OrderedDict
-
-
-class DocstringReporter(IReporter):
-    pass
 
 
 class TestOrderedDict(unittest.TestCase):
