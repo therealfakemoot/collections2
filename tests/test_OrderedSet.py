@@ -3,7 +3,7 @@ from twisted.trial import unittest
 from better_od import OrderedSet
 
 
-class TestOrderedDict(unittest.TestCase):
+class TestOrderedSet(unittest.TestCase):
     def setUp(self):
         self.values = 'abcddefg'
         self.s = OrderedSet(self.values)
@@ -15,6 +15,8 @@ class TestOrderedDict(unittest.TestCase):
     def test_index(self):
         self.assertEquals(self.s.key_index('c'), 2)
 
+
+class TestOrderedSetMutations(unittest.TestCase):
     def test_add_new_value(self):
         prev = len(self.s)
         self.s.add('z')
