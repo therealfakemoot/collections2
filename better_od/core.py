@@ -84,7 +84,10 @@ class OrderedSet(MutableSet):
             self._keys = []
             return
         self._set = set(items)
-        self._keys = list(items)
+        self._keys = []
+        for key in items:
+            if key not in self._keys:
+                self._keys.append(key)
 
     def __contains__(self, value):
         return value in self._set
