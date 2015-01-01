@@ -1,4 +1,4 @@
-from collections import MutableMapping, MutableSet
+from collections import MutableMapping
 
 
 class OrderedDict(MutableMapping):
