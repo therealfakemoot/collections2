@@ -1,13 +1,13 @@
-from collections import MutableMapping
+from collections import MutableMapping, MutableSet
 
 
-class BetterOrderedDict(MutableMapping):
-    '''BetterOrderedDict is a mapping object that allows for ordered access
+class OrderedDict(MutableMapping):
+    '''OrderedDict is a mapping object that allows for ordered access
     and insertion of keys. With the exception of the key_index, insert, and
     reorder_keys methods behavior is identical to stock dictionary objects.'''
 
     def __init__(self, items=None):
-        '''BetterOrderedDict accepts an optional iterable of two-tuples
+        '''OrderedDict accepts an optional iterable of two-tuples
         indicating keys and values.'''
 
         self._d = dict()
@@ -71,7 +71,7 @@ class BetterOrderedDict(MutableMapping):
         return str([(key, self[key]) for key in self])
 
     def __eq__(self, other):
-        if not isinstance(other, BetterOrderedDict):
+        if not isinstance(other, OrderedDict):
             return False
 
         return self.items() == other.items()

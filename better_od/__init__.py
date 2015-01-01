@@ -1,2 +1,1 @@
-from better_od.core import BetterOrderedDict
-from better_od.core import BetterOrderedDict as BOD
+from better_od.core import OrderedDict
