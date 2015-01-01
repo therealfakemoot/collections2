@@ -28,12 +28,12 @@ class TestOrderedDictEquality(unittest.TestCase):
         self.d = OrderedDict(zip(self._test_keys, self._test_vals))
 
     def test_order_check(self):
-        bod = OrderedDict([('c', 1), ('b', 0), ('a', -2)])
-        self.assertNotEquals(self.d, bod)
+        od = OrderedDict([('c', 1), ('b', 0), ('a', -2)])
+        self.assertNotEquals(self.d, od)
 
     def test_value_check(self):
-        bod = OrderedDict([('a', -2), ('b', 0), ('c', 3)])
-        self.assertNotEquals(self.d, bod)
+        od = OrderedDict([('a', -2), ('b', 0), ('c', 3)])
+        self.assertNotEquals(self.d, od)
 
     def test_builtin_dict_inequality(self):
         d = {'a': -2, 'b': 0, 'c': 3}
