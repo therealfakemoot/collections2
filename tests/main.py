@@ -1,4 +1,4 @@
-from better_od import OrderedDict
+from collections2 import OrderedDict
 import pytest
 
 

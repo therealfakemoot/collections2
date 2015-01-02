@@ -1,6 +1,6 @@
 from twisted.trial import unittest
 
-from better_od import OrderedDict
+from collections2 import OrderedDict
 
 
 class TestOrderedDict(unittest.TestCase):

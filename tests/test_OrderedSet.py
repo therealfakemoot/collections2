@@ -1,6 +1,6 @@
 from twisted.trial import unittest
 
-from better_od import OrderedSet
+from collections2 import OrderedSet
 
 
 class TestOrderedSet(unittest.TestCase):
