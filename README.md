@@ -79,7 +79,7 @@ Like OrderedDict, OrderedSet allows you finer control over the order in which me
 The repr() of OrderedSet objects shows a series of two-tuples, in order, displaying the index and its associated member.
 ###Iteration
 Iteration simply yields the members in order.
-``python
+```python
 >>> for member in s:
 ...     print member
 ...     
