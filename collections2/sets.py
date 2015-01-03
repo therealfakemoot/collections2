@@ -24,7 +24,7 @@ class OrderedSet(MutableSet):
         return len(self._set)
 
     def __repr__(self):
-        return str(list(enumerate(self._set)))
+        return str(list(enumerate(self._keys)))
 
     def add(self, value):
         if value in self._set:
