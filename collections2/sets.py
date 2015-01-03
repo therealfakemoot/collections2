@@ -63,4 +63,4 @@ class OrderedSet(MutableSet):
             raise ValueError('The supplied number of keys does not match.')
         if set(keys) != self._set:
             raise ValueError('The supplied keys do not match the current set of keys.')
-        self._keys = keys
+        self._keys = list(keys)
