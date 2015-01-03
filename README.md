@@ -63,3 +63,55 @@ OrderedDict.reorder_keys allows you to completely change the order of all the ke
 >>> d
 [('foo', 'bar'), ('something', None), ('stuff', 'things'), ('insert', 'value')]
 ```
+
+#OrderedSet
+Like OrderedDict, OrderedSet allows you finer control over the order in which members will appear during iteration.
+
+##Usage
+```python
+>>> from collections2 import OrderedSet
+>>> s = OrderedSet('abcdefg')
+>>> s
+[(0, 'a'), (1, 'c'), (2, 'b'), (3, 'e'), (4, 'd'), (5, 'g'), (6, 'f')]
+>>> 
+
+```
+The repr() of OrderedSet objects shows a series of two-tuples, in order, displaying the index and its associated member.
+###Iteration
+Iteration simply yields the members in order.
+``python
+>>> for member in s:
+...     print member
+...     
+... 
+a
+b
+c
+d
+e
+f
+g
+```
+
+###key_index
+```python
+>>> s
+[(0, 'a'), (1, 'b'), (2, 'c'), (3, 'e'), (4, 'd'), (5, 'f')]
+>>> s.key_index('f')
+5
+```
+
+###reorder_keys
+```python
+>>> s.reorder_keys('fadbec')
+>>> s
+[(0, 'f'), (1, 'a'), (2, 'd'), (3, 'b'), (4, 'e'), (5, 'c')]
+```
+
+###insert
+```python
+>>> s = OrderedSet('abcedf')
+>>> s.insert('z', 0)
+>>> s
+[(0, 'z'), (1, 'a'), (2, 'b'), (3, 'c'), (4, 'e'), (5, 'd'), (6, 'f')]
+```
