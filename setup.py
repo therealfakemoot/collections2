@@ -7,6 +7,7 @@ setup(
     author='Nick Dumas',
     author_email='drakonik@gmail.com',
     url='https://github.com/therealfakemoot/BetterOrderedDict/',
+    keywords=['set', 'dict', 'ordered', 'collections'],
     packages=find_packages(),
     zip_safe=False
 )
