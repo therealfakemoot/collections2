@@ -1,13 +1,11 @@
-from collections import MutableMapping
+from collections import MutableMapping, Mapping
 
 
-class OrderedDict(MutableMapping):
-    '''OrderedDict is a mapping object that allows for ordered access
-    and insertion of keys. With the exception of the key_index, insert, and
-    reorder_keys methods behavior is identical to stock dictionary objects.'''
-
+class FrozenOrderedDict(Mapping):
+    '''FrozenOrderedDict is an immutable mapping object that allows for ordered access
+    and iteration over keys.'''
     def __init__(self, items=None):
-        '''OrderedDict accepts an optional iterable of two-tuples
+        '''FrozenOrderedDict accepts an optional iterable of two-tuples
         indicating keys and values.'''
 
         self._d = dict()
@@ -15,7 +13,11 @@ class OrderedDict(MutableMapping):
         if items is None:
             return
         for key, value in items:
-            self[key] = value
+            self._d[key] = value
+            self._keys.append(key)
+
+    def __hash__(self):
+        return hash(self.iteritems())
 
     def __len__(self):
         return len(self._d)
@@ -24,22 +26,36 @@ class OrderedDict(MutableMapping):
         for key in self._keys:
             yield key
 
-    def __setitem__(self, key, value):
-        if key not in self._keys:
-            self._keys.append(key)
-        self._d[key] = value
-
     def __getitem__(self, key):
         return self._d[key]
-
-    def __delitem__(self, key):
-        self._keys.remove(key)
-        del self._d[key]
 
     def key_index(self, key):
         '''Accepts a parameter, :key:, and returns an integer value
         representing its index in the ordered list of keys.'''
         return self._keys.index(key)
+
+    def __repr__(self):
+        return str([(key, self[key]) for key in self])
+
+    def __eq__(self, other):
+        if not isinstance(other, OrderedDict):
+            return False
+
+        return self.items() == other.items()
+
+
+class OrderedDict(FrozenOrderedDict, MutableMapping):
+    '''OrderedDict is a mapping object that allows for ordered access
+    and insertion of keys. With the exception of the key_index, insert, and
+    reorder_keys methods behavior is identical to stock dictionary objects.'''
+    def __setitem__(self, key, value):
+        if key not in self._keys:
+            self._keys.append(key)
+        self._d[key] = value
+
+    def __delitem__(self, key):
+        self._keys.remove(key)
+        del self._d[key]
 
     def insert(self, key, value, index):
         '''Accepts a :key:, :value:, and :index: parameter and inserts
@@ -67,11 +83,3 @@ class OrderedDict(MutableMapping):
             raise ValueError('The supplied keys do not match the current set of keys.')
         self._keys = keys
 
-    def __repr__(self):
-        return str([(key, self[key]) for key in self])
-
-    def __eq__(self, other):
-        if not isinstance(other, OrderedDict):
-            return False
-
-        return self.items() == other.items()
