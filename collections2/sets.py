@@ -1,7 +1,7 @@
 from collections import Set, MutableSet
 
 
-class OrderedSet(MutableSet):
+class FrozenOrderedSet(Set):
     def __init__(self, items=None):
         if items is None:
             self._set = set()
@@ -26,6 +26,11 @@ class OrderedSet(MutableSet):
     def __repr__(self):
         return str(list(enumerate(self._keys)))
 
+    def key_index(self, key):
+        return self._keys.index(key)
+
+
+class OrderedSet(FrozenOrderedSet, MutableSet):
     def add(self, value):
         if value in self._set:
             return
@@ -35,9 +40,6 @@ class OrderedSet(MutableSet):
 
     def discard(self, value):
         self._set.discard(value)
-
-    def key_index(self, key):
-        return self._keys.index(key)
 
     def insert(self, value, index):
         '''Accepts a :value: and :index: parameter and inserts
