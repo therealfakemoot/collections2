@@ -1,7 +1,7 @@
 from collections import Set, MutableSet
 
 
-class FrozenOrderedSet(Set):
+class BaseOrderedSet(object):
     def __init__(self, items=None):
         if items is None:
             self._set = set()
@@ -30,7 +30,12 @@ class FrozenOrderedSet(Set):
         return self._keys.index(key)
 
 
-class OrderedSet(FrozenOrderedSet, MutableSet):
+class FrozenOrderedSet(BaseOrderedSet, Set):
+    def __hash__(self):
+        return hash(self.items())
+
+
+class OrderedSet(BaseOrderedSet, MutableSet):
     def add(self, value):
         if value in self._set:
             return
