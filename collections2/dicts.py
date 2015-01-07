@@ -1,9 +1,7 @@
 from collections import MutableMapping, Mapping
 
 
-class FrozenOrderedDict(Mapping):
-    '''FrozenOrderedDict is an immutable mapping object that allows for ordered access
-    and iteration over keys.'''
+class BaseOrderedDict(object):
     def __init__(self, items=None):
         '''FrozenOrderedDict accepts an optional iterable of two-tuples
         indicating keys and values.'''
@@ -15,9 +13,6 @@ class FrozenOrderedDict(Mapping):
         for key, value in items:
             self._d[key] = value
             self._keys.append(key)
-
-    def __hash__(self):
-        return hash(self.iteritems())
 
     def __len__(self):
         return len(self._d)
@@ -44,7 +39,14 @@ class FrozenOrderedDict(Mapping):
         return self.items() == other.items()
 
 
-class OrderedDict(FrozenOrderedDict, MutableMapping):
+class FrozenOrderedDict(BaseOrderedDict, Mapping):
+    '''FrozenOrderedDict is an immutable mapping object that allows for ordered access
+    and iteration over keys.'''
+    def __hash__(self):
+        return hash(self.iteritems())
+
+
+class OrderedDict(BaseOrderedDict, MutableMapping):
     '''OrderedDict is a mapping object that allows for ordered access
     and insertion of keys. With the exception of the key_index, insert, and
     reorder_keys methods behavior is identical to stock dictionary objects.'''
