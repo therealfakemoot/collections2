@@ -33,3 +33,22 @@ class TestEquality(unittest.TestCase):
     def test_builtin_dict_inequality(self):
         d = {'a': -2, 'b': 0, 'c': 3}
         self.assertNotEquals(self.d, d)
+
+
+class TestHashing(unittest.TestCase):
+    def test_set_membership(self):
+        a = FrozenOrderedDict(enumerate('abc'))
+        b = FrozenOrderedDict(enumerate('abc'))
+
+        test_set = set()
+        test_set.add(a)
+
+        self.assertIn(b, test_set)
+
+    def test_dict_key(self):
+        a = FrozenOrderedDict(enumerate('abc'))
+        b = FrozenOrderedDict(enumerate('abc'))
+
+        d = dict()
+        d[a] = True
+        self.assertIs(d[b], True)

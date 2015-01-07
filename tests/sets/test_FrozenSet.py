@@ -15,6 +15,24 @@ class TestOrder(unittest.TestCase):
         self.assertEquals(self.s.key_index('c'), 2)
 
 
+class TestEquality(unittest.TestCase):
+    def setUp(self):
+        self._test_vals = 'abc'
+        self.s = FrozenOrderedSet('abc')
+
+    def test_order_check(self):
+        s = FrozenOrderedSet('abc')
+        self.assertEqual(self.s, s)
+
+    def test_bad_order_check(self):
+        s = FrozenOrderedSet('bac')
+        self.assertNotEqual(self.s, s)
+
+    def test_builtin_set_inequality(self):
+        s = set('abc')
+        self.assertNotEqual(self.s, s)
+
+
 class TestHashing(unittest.TestCase):
     def test_set_membership(self):
         a = FrozenOrderedSet('abc')
