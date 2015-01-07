@@ -29,6 +29,12 @@ class BaseOrderedSet(object):
     def key_index(self, key):
         return self._keys.index(key)
 
+    def __eq__(self, other):
+        if not isinstance(other, BaseOrderedSet):
+            return False
+
+        return tuple(self) == tuple(other)
+
 
 class FrozenOrderedSet(BaseOrderedSet, Set):
     def __hash__(self):

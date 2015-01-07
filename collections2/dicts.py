@@ -33,7 +33,7 @@ class BaseOrderedDict(object):
         return str([(key, self[key]) for key in self])
 
     def __eq__(self, other):
-        if not isinstance(other, OrderedDict):
+        if not isinstance(other, BaseOrderedDict):
             return False
 
         return self.items() == other.items()
