@@ -32,7 +32,7 @@ class BaseOrderedSet(object):
 
 class FrozenOrderedSet(BaseOrderedSet, Set):
     def __hash__(self):
-        return hash(self.items())
+        return hash(tuple(self))
 
 
 class OrderedSet(BaseOrderedSet, MutableSet):
