@@ -43,7 +43,7 @@ class FrozenOrderedDict(BaseOrderedDict, Mapping):
     '''FrozenOrderedDict is an immutable mapping object that allows for ordered access
     and iteration over keys.'''
     def __hash__(self):
-        return hash(self.iteritems())
+        return hash(self.items())
 
 
 class OrderedDict(BaseOrderedDict, MutableMapping):
