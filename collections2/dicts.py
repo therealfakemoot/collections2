@@ -51,7 +51,7 @@ class OrderedDict(BaseOrderedDict, MutableMapping):
     and insertion of keys. With the exception of the key_index, insert, and
     reorder_keys methods behavior is identical to stock dictionary objects.'''
     def __setitem__(self, key, value):
-        if key not in self._keys:
+        if key not in self._d:
             self._keys.append(key)
         self._d[key] = value
 
