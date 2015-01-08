@@ -34,7 +34,7 @@ class BaseOrderedDict(object):
 
     def __eq__(self, other):
         if not isinstance(other, BaseOrderedDict):
-            return False
+            return NotImplemented
 
         return self.items() == other.items()
 
@@ -84,4 +84,3 @@ class OrderedDict(BaseOrderedDict, MutableMapping):
         if set(keys) != set(self._d.keys()):
             raise ValueError('The supplied keys do not match the current set of keys.')
         self._keys = keys
-

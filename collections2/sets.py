@@ -31,7 +31,7 @@ class BaseOrderedSet(object):
 
     def __eq__(self, other):
         if not isinstance(other, BaseOrderedSet):
-            return False
+            return NotImplemented
 
         return tuple(self) == tuple(other)
 
