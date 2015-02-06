@@ -2,7 +2,7 @@ collections2
 =================
 
 #OrderedDict
-collections2.OrderedDict is a re-implementation of collections.OrderedDict that allows finer control over the order of its members. It does this by exposing methods for manipulating the internal order-tracking state (a list in the default implementation).
+collections2.OrderedDict is a re-implementation of collections.OrderedDict that allows finer control over the order of its members. It does this by exposing methods for manipulating the internal order-tracking state.
 
 ##Usage
 The OrderedDict is used identically to other dict-like or mapping objects. The only catch is its constructor doesn't do anything special and can't do smart consumption of dicts versus sequences of tuples and so on. Standard usage is as follows:
