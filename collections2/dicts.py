@@ -75,3 +75,8 @@ class OrderedDict(MutableMapping):
             return False
 
         return self.items() == other.items()
+
+    def keys(self):
+        """Return a copy of the _keys list instead of iterating over it as the MutableMapping does by default.
+        """
+        return list(self._keys)
