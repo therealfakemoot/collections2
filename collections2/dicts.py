@@ -1,13 +1,13 @@
 from collections import MutableMapping
 
 
-class BetterOrderedDict(MutableMapping):
-    '''BetterOrderedDict is a mapping object that allows for ordered access
+class OrderedDict(MutableMapping):
+    '''OrderedDict is a mapping object that allows for ordered access
     and insertion of keys. With the exception of the key_index, insert, and
     reorder_keys methods behavior is identical to stock dictionary objects.'''
 
     def __init__(self, items=None):
-        '''BetterOrderedDict accepts an optional iterable of two-tuples
+        '''OrderedDict accepts an optional iterable of two-tuples
         indicating keys and values.'''
 
         self._d = dict()
@@ -43,7 +43,15 @@ class BetterOrderedDict(MutableMapping):
 
     def insert(self, key, value, index):
         '''Accepts a :key:, :value:, and :index: parameter and inserts
-        a new key, value member at the desired index.'''
+        a new key, value member at the desired index.
+
+        Note: Inserting with a negative index will have the following behavior:
+        >>> l = [1, 2, 3, 4]
+        >>> l.insert(-1, 5)
+        >>> l
+        [1, 2, 3, 5, 4]
+        '''
+
         if key in self._keys:
             self._keys.remove(key)
         self._keys.insert(index, key)
@@ -53,15 +61,17 @@ class BetterOrderedDict(MutableMapping):
         '''Accepts a :keys: parameter, an iterable of keys in the
         desired new order. The :keys: parameter must contain all
         existing keys.'''
-        if set(keys) != set(self._d.keys()) or len(keys) != len(self._d.keys()):
-            raise ValueError('Keys do not match.')
+        if len(keys) != len(self._keys):
+            raise ValueError('The supplied number of keys does not match.')
+        if set(keys) != set(self._d.keys()):
+            raise ValueError('The supplied keys do not match the current set of keys.')
         self._keys = keys
 
     def __repr__(self):
         return str([(key, self[key]) for key in self])
 
     def __eq__(self, other):
-        if not isinstance(other, BetterOrderedDict):
+        if not isinstance(other, OrderedDict):
             return False
 
         return self.items() == other.items()
